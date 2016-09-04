@@ -13,7 +13,7 @@ tags:
 ### 一、简介
 
 #### 1.是什么？
-Flexible Box , 弹性盒子 ，用于弹性布局。
+Flexible Box , 弹性盒子 ，用于弹性布局
 
 #### 2.兼容性
 IE10 + ／Chrome 21+ ／Opera 12.1+ ／Firefox 22+ ／Safari 6.1+
@@ -21,6 +21,7 @@ IE10 + ／Chrome 21+ ／Opera 12.1+ ／Firefox 22+ ／Safari 6.1+
 
 #### 3.影响
 设置 flex 布局以后，子元素的 float 、clear 、vertical-align 属性将失效。
+<!-- more -->
 
 #### 4.基本概念
 - 采用flex布局的元素，成为flex容器（flex container）。他的子元素自动变成容器成员，成为项目（flex item）。
