@@ -1,11 +1,8 @@
 ---
 title: Flex
 date: 2016-09-04 10:54:01
-categories:
-    - CSS
 tags:
     - Flex
-    - CSS
 ---
 
 ## Flex

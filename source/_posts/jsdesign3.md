@@ -5,7 +5,6 @@ categories:
     - Javascript 设计模式
 tags:
     - 设计模式
-    - JS
 ---
 
 ## 建造者模式
