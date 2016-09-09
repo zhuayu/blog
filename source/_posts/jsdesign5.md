@@ -4,7 +4,7 @@ date: 2016-09-04 20:59:00
 categories:
     - Javascript 设计模式
 tags:
-    - 设计模式
+    - 适配器模式
 ---
 
 ## 适配器模式

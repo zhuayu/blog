@@ -4,7 +4,7 @@ date: 2016-09-04 16:59:00
 categories:
     - Javascript 设计模式
 tags:
-    - 设计模式
+    - 职责链模式
 ---
 
 ## 职责链模式
