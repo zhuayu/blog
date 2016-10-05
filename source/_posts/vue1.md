@@ -1,5 +1,5 @@
 ---
-title: vue (一)概览
+title: VUE (一) 概览
 date: 2016-10-02 14:53:12
 categories:
     - vue
