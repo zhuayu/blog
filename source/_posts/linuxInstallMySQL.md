@@ -28,29 +28,28 @@ rpm -ivh mysql-community-release-el7-5.noarch.rpm
 yum install mysql-server
 ```
 
+## 启动
+```
+service mysql start
+```
+
 ## 登录mysql
 ```
 mysql -u root
 ```
-登录时有可能报这样的错：ERROR 2002 (HY000): Can‘t connect to local MySQL server through socket ‘/var/lib/mysql/mysql.sock‘ (2)，原因是/var/lib/mysql的访问权限问题。下面的命令把/var/lib/mysql的拥有者改为当前用户：
-```
-sudo chown -R openscanner:openscanner /var/lib/mysql
-```
-然后重启服务
-```
-service mysql restart
-```
 
-## 登录重置密码
+## 修改密码
 ```
-use mysql;
-
-update user set password=password('123456') where user='root';
-
-flush privileges
-
+// 先退出
 exit
+
+mysqladmin password
+// 输入新密码
+
+// 重新登陆
+mysql -u root -p
 ```
+
 
 ## 如果有防火墙的话要开启3306端口，没有限制端口就不需要，这样就可以远程连接
 看一下防火墙情况，如果有2行就是开了

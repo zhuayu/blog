@@ -99,7 +99,7 @@ yum install nginx
 
 ### 开启nginx服务
 ```
-start  nginx.service
+systemctl enable nginx
 ```
 
 ### 检查
