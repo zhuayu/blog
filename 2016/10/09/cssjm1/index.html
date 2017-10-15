@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="背景与边框," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="半透明边框      123456display: inline-block;height: 200px;width: 200px;background: #fff;border:10px solid hsla(0,0%,100%,.5);background-clip: padding-box;">
+<meta name="keywords" content="背景与边框">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS 揭秘（一）背景与边框">
+<meta property="og:url" content="https://zhuayu.github.io/zhuayu.github.io/2016/10/09/cssjm1/index.html">
+<meta property="og:site_name" content="JaxChu">
+<meta property="og:description" content="半透明边框      123456display: inline-block;height: 200px;width: 200px;background: #fff;border:10px solid hsla(0,0%,100%,.5);background-clip: padding-box;">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-15T07:35:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS 揭秘（一）背景与边框">
+<meta name="twitter:description" content="半透明边框      123456display: inline-block;height: 200px;width: 200px;background: #fff;border:10px solid hsla(0,0%,100%,.5);background-clip: padding-box;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhuayu.github.io/zhuayu.github.io/2016/10/09/cssjm1/"/>
+
+
+
+
+
+  <title>CSS 揭秘（一）背景与边框 | JaxChu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JaxChu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quick note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'U5nsiDF5pEyJZwgfAFT5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhuayu.github.io/zhuayu.github.io/2016/10/09/cssjm1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JaxChu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JaxChu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS 揭秘（一）背景与边框</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-09T17:21:02+08:00">
+                2016-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS-揭秘/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS 揭秘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="半透明边框"><a href="#半透明边框" class="headerlink" title="半透明边框"></a>半透明边框</h2><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: #fff;
+        border:10px solid hsla(0,0%,100%,.5);
+        background-clip: padding-box;
+    "></div><br></div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: #fff;</div><div class="line">border:10px solid hsla(0,0%,100%,.5);</div><div class="line">background-clip: padding-box;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="多重边框"><a href="#多重边框" class="headerlink" title="多重边框"></a>多重边框</h2><p><div style="text-align: center;background: #ccc;padding: 40px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: #ccc;
+        box-shadow: 0 0 0 10px hsla(0,0%,100%,.7),
+                    0 0 0 20px hsla(0,0%,100%,.6),
+                    0 0 0 30px hsla(0,0%,100%,.5);
+    "></div><br></div><br>box-shadow方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: #ccc;</div><div class="line">box-shadow: 0 0 0 10px hsla(0,0%,100%,.7),</div><div class="line">            0 0 0 20px hsla(0,0%,100%,.6),</div><div class="line">            0 0 0 30px hsla(0,0%,100%,.5);</div></pre></td></tr></table></figure></p>
+<p>outline方案：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: #fff;
+        border:10px solid #35b558;
+        outline: 10px solid hsla(0,0%,100%,.4);
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: #fff;</div><div class="line">border:10px solid #35b558;</div><div class="line">outline: 10px solid hsla(0,0%,100%,.4);</div></pre></td></tr></table></figure></p>
+<h2 id="背景定位"><a href="#背景定位" class="headerlink" title="背景定位"></a>背景定位</h2><p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background:#fff url(/images/touxiang.jpg) no-repeat right 10px bottom 10px/ 100px 100px;
+    "></div><br></div><br>background-position 扩展语法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background:#fff url(/images/touxiang.jpg) no-repeat right 10px bottom 10px / 100px 100px;</div></pre></td></tr></table></figure></p>
+<p>background-origin 方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">padding: 10px;</div><div class="line">background:#fff url(/images/touxiang.jpg) no-repeat right  bottom  / 100px 100px;</div><div class="line">background-origin: content-box;</div></pre></td></tr></table></figure></p>
+<p>background-positon-calc()方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background:#fff url(/images/touxiang.jpg) no-repeat 0 0/ 100px 100px;</div><div class="line">background-position: calc(100% - 20px) calc(100% - 20px);</div></pre></td></tr></table></figure></p>
+<h2 id="边框内圆角"><a href="#边框内圆角" class="headerlink" title="边框内圆角"></a>边框内圆角</h2><p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background:tan;
+        border-radius: 10px;
+        box-shadow:0 0 0 10px #655;
+        outline: 10px solid #655;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background:tan;</div><div class="line">border-radius: 10px;</div><div class="line">box-shadow:0 0 0 10px #655;</div><div class="line">outline: 10px solid #655;</div></pre></td></tr></table></figure></p>
+<h2 id="条纹背景"><a href="#条纹背景" class="headerlink" title="条纹背景"></a>条纹背景</h2><p>双色：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: linear-gradient(#fb3 50%,#58a 50%);
+        background-size: 100% 20px;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: linear-gradient(#fb3 50%,#58a 50%);</div><div class="line">background-size: 100% 20px;</div></pre></td></tr></table></figure></p>
+<p>三色：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: linear-gradient(#fb3 33.33%, #58a 0,#58a 66.66%,#35b558 0);
+        background-size: 100% 30px;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: linear-gradient(#fb3 33.33%, #58a 0,#58a 66.66%,#35b558 0);</div><div class="line">background-size: 100% 20px;</div></pre></td></tr></table></figure></p>
+<p>垂直：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: linear-gradient(to right,#fb3 50%,#58a 50%);
+        background-size:20px 100% ;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: linear-gradient(to right,#fb3 50%,#58a 50%);</div><div class="line">background-size:20px 100% ;</div></pre></td></tr></table></figure></p>
+<p>斜向：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: linear-gradient(45deg,#fb3 25%, #58a 0,#58a 50%,#fb3 0,#fb3 75%,#58a 0);
+        background-size:30px 30px ;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: linear-gradient(</div><div class="line">    45deg,#fb3 25%, #58a 0,#58a 50%,#fb3 0,#fb3 75%,#58a 0);</div><div class="line">background-size:30px 30px ;</div></pre></td></tr></table></figure></p>
+<p>同色系：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: #fb3;
+        background-image: repeating-linear-gradient(30deg,
+            hsla(0,0%,100%,.2),
+            hsla(0,0%,100%,.2) 15px,
+            transparent 0,
+            transparent 30px)
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: #fb3;</div><div class="line">background-image: repeating-linear-gradient(30deg,</div><div class="line">    hsla(0,0%,100%,.2),</div><div class="line">    hsla(0,0%,100%,.2) 15px,</div><div class="line">    transparent 0,</div><div class="line">    transparent 30px)</div></pre></td></tr></table></figure></p>
+<h2 id="背景图案"><a href="#背景图案" class="headerlink" title="背景图案"></a>背景图案</h2><p>网格：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: white;
+        background-image: 
+            linear-gradient(90deg,
+                rgba(200,0,0,.5) 50%,transparent 0),
+            linear-gradient(
+                rgba(200,0,0,.5) 50%,transparent 0);
+        background-size: 20px 20px;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: white;</div><div class="line">background-image: </div><div class="line">    linear-gradient(90deg,</div><div class="line">        rgba(200,0,0,.5) 50%,transparent 0),</div><div class="line">    linear-gradient(</div><div class="line">        rgba(200,0,0,.5) 50%,transparent 0);</div><div class="line">background-size: 20px 20px;</div></pre></td></tr></table></figure></p>
+<p>细网格：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: #58a;
+        background-image: 
+            linear-gradient(
+                white 1px,transparent 0),
+            linear-gradient(90deg,
+                white 1px,transparent 0);
+        background-size: 20px 20px;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: white;</div><div class="line">background-image: </div><div class="line">    linear-gradient(90deg,</div><div class="line">        rgba(200,0,0,.5) 50%,transparent 0),</div><div class="line">    linear-gradient(</div><div class="line">        rgba(200,0,0,.5) 50%,transparent 0);</div><div class="line">background-size: 20px 20px;</div></pre></td></tr></table></figure></p>
+<p>波点：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: #655;
+        background-image:
+            radial-gradient(tan 30%,transparent 0),
+            radial-gradient(tan 30%,transparent 0);
+        background-size: 20px 20px;
+        background-position:0 0 , 30px 30px;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: #655;</div><div class="line">background-image:</div><div class="line">    radial-gradient(tan 30%,transparent 0),</div><div class="line">    radial-gradient(tan 30%,transparent 0);</div><div class="line">background-size: 20px 20px;</div><div class="line">background-position:0 0 , 30px 30px;</div></pre></td></tr></table></figure></p>
+<p>棋盘：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background: #eee;
+        background-image:
+            linear-gradient(45deg,#bbb 25%,transparent 0),
+            linear-gradient(45deg,transparent 75%,#bbb 0),
+            linear-gradient(45deg,#bbb 25%,transparent 0),
+            linear-gradient(45deg,transparent 75%,#bbb 0);
+        background-size: 20px 20px;
+        background-position: 0 0 ,10px 10px,10px 10px,20px 20px;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background: #eee;</div><div class="line">background-image:</div><div class="line">    linear-gradient(45deg,#bbb 25%,transparent 0),</div><div class="line">    linear-gradient(45deg,transparent 75%,#bbb 0),</div><div class="line">    linear-gradient(45deg,#bbb 25%,transparent 0),</div><div class="line">    linear-gradient(45deg,transparent 75%,#bbb 0);</div><div class="line">background-size: 20px 20px;</div><div class="line">background-position: 0 0 ,10px 10px,10px 10px,20px 20px;</div></pre></td></tr></table></figure></p>
+<p>伪随机背景：</p>
+<p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        background-image:
+            linear-gradient(90deg,#fb3 11px,transparent 0),
+            linear-gradient(90deg,#ab4 23px,transparent 0),
+            linear-gradient(90deg,#655 41px,transparent 0),
+            linear-gradient(90deg,transparent 75%,#bbb 0);
+        background-size: 41px 100%,61px 100%,83px 100%;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">background-image:</div><div class="line">    linear-gradient(90deg,#fb3 11px,transparent 0),</div><div class="line">    linear-gradient(90deg,#ab4 23px,transparent 0),</div><div class="line">    linear-gradient(90deg,#655 41px,transparent 0),</div><div class="line">    linear-gradient(90deg,transparent 75%,#bbb 0);</div><div class="line">background-size: 41px 100%,61px 100%,83px 100%;</div></pre></td></tr></table></figure></p>
+<h2 id="连续图像边框"><a href="#连续图像边框" class="headerlink" title="连续图像边框"></a>连续图像边框</h2><p><div style="text-align: center;background: #ccc;padding: 20px;"><br>    <div style="
+        display: inline-block;
+        height: 200px;
+        width: 200px;
+        border:20px solid transparent;
+        background: 
+            linear-gradient(white,white),
+            url(/images/touxiang.jpg);
+        background-size: cover;
+        background-clip: padding-box,border-box;
+        background-origin: border-box;
+    "></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">display: inline-block;</div><div class="line">height: 200px;</div><div class="line">width: 200px;</div><div class="line">border:20px solid transparent;</div><div class="line">background: </div><div class="line">    linear-gradient(white,white),</div><div class="line">    url(/images/touxiang.jpg);</div><div class="line">background-size: cover;</div><div class="line">background-clip: padding-box,border-box;</div><div class="line">background-origin: border-box;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/背景与边框/" rel="tag"># 背景与边框</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/02/vue1/" rel="next" title="VUE (一) 入门">
+                <i class="fa fa-chevron-left"></i> VUE (一) 入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/10/cssjm2/" rel="prev" title="CSS 揭秘（二）形状">
+                CSS 揭秘（二）形状 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="JaxChu" />
+            
+              <p class="site-author-name" itemprop="name">JaxChu</p>
+              <p class="site-description motion-element" itemprop="description">FE@JKXY</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#半透明边框"><span class="nav-number">1.</span> <span class="nav-text">半透明边框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多重边框"><span class="nav-number">2.</span> <span class="nav-text">多重边框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景定位"><span class="nav-number">3.</span> <span class="nav-text">背景定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边框内圆角"><span class="nav-number">4.</span> <span class="nav-text">边框内圆角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条纹背景"><span class="nav-number">5.</span> <span class="nav-text">条纹背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景图案"><span class="nav-number">6.</span> <span class="nav-text">背景图案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连续图像边框"><span class="nav-number">7.</span> <span class="nav-text">连续图像边框</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JaxChu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

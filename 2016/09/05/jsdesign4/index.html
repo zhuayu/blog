@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="策略模式," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="策略模式定义：定义了一些列的算法，把它门一个个封装起来，并使他们可以相互互换，算法的变化不会影响使用算法的客户。">
+<meta name="keywords" content="策略模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript 设计模式（ 五 ）策略模式">
+<meta property="og:url" content="https://zhuayu.github.io/zhuayu.github.io/2016/09/05/jsdesign4/index.html">
+<meta property="og:site_name" content="JaxChu">
+<meta property="og:description" content="策略模式定义：定义了一些列的算法，把它门一个个封装起来，并使他们可以相互互换，算法的变化不会影响使用算法的客户。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-15T07:35:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript 设计模式（ 五 ）策略模式">
+<meta name="twitter:description" content="策略模式定义：定义了一些列的算法，把它门一个个封装起来，并使他们可以相互互换，算法的变化不会影响使用算法的客户。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhuayu.github.io/zhuayu.github.io/2016/09/05/jsdesign4/"/>
+
+
+
+
+
+  <title>Javascript 设计模式（ 五 ）策略模式 | JaxChu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JaxChu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quick note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'U5nsiDF5pEyJZwgfAFT5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhuayu.github.io/zhuayu.github.io/2016/09/05/jsdesign4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JaxChu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JaxChu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Javascript 设计模式（ 五 ）策略模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-05T02:59:00+08:00">
+                2016-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript-设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript 设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>定义了一些列的算法，把它门一个个封装起来，并使他们可以相互互换，算法的变化不会影响使用算法的客户。<br><a id="more"></a></p>
+<h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><p>用策略模式创建一个表单验证的功能。<br>以下是表单结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;form  id=&quot;registerForm&quot; action=&quot;http://xxx.com/register&quot; style=&quot;padding:50px;&quot;&gt;</div><div class="line">    &lt;label for=&quot;userName&quot; &gt;userName&lt;/label&gt;</div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;input type=&quot;text&quot; id=&quot;userName&quot; placeholder=&quot;userName&quot; name=&quot;userName&quot;&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;label for=&quot;password&quot; name=&quot;password&quot; &gt;Password&lt;/label&gt;</div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Password&quot;&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;label for=&quot;phoneNumber&quot; name=&quot;phoneNumber&quot;&gt;phoneNumber&lt;/label&gt;</div><div class="line">    &lt;div&gt;</div><div class="line">     &lt;input type=&quot;text&quot; id=&quot;phoneNumber&quot; name=&quot;phoneNumber&quot; placeholder=&quot;phoneNumber&quot;&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="封装策略类"><a href="#封装策略类" class="headerlink" title="封装策略类"></a>封装策略类</h4><p>我们创建一个策略对象strategies，并把算法类型都在里面分别封装起来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var strategies = &#123;</div><div class="line">    isNonEmpty:function(value,errorMsg)&#123;                  //不为空</div><div class="line">        if (value===&apos;&apos;) &#123; </div><div class="line">            return errorMsg;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    minLength:function(value,length,errorMsg)&#123;            //限制最小长度</div><div class="line">        if (value.length&lt;length) &#123;</div><div class="line">            return errorMsg;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    isMobile:function(value,errorMsg)&#123;                   //手机号码格式</div><div class="line">        console.log(this);</div><div class="line">        if (!/(^1[3|5|8][0-9]&#123;9&#125;$)/.test(value)) &#123;</div><div class="line">            return errorMsg;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h4 id="封装验证类"><a href="#封装验证类" class="headerlink" title="封装验证类"></a>封装验证类</h4><ul>
+<li>add方法接收到registerForm.userName,[{strategy:’minLength:6’},{errorMsg:’用户名长度不能少于6位’}];</li>
+<li>strategyAry就把’minLength:6’通过冒号区分了策略和参数</li>
+<li>strategy通过shift() 方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。</li>
+<li>这样stragety就等于’minLength’</li>
+<li>strategyAry就等于’6’</li>
+<li>strategyAry通过unshift() 方法可向数组的开头添加了’dom.value’,</li>
+<li>strategyAry就等于｛’value’,’6’}</li>
+<li>strategyAry通过push()方法添加上了’errorMsg’,</li>
+<li>strategyAry就等于了{‘value’,’6’,’errorMsg’}<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">var Validator = function()&#123;</div><div class="line">    this.cache = [];                                     //保存验证规则</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Validator.prototype.add = function(dom,rules)&#123;</div><div class="line"></div><div class="line">    var self = this;</div><div class="line"></div><div class="line">    for(var i = 0, rule; rule = rules[i++];)&#123;</div><div class="line">        (function(rule)&#123;</div><div class="line">            var strategyAry = rule.strategy.split(&apos;:&apos;);  //把strategy和参数分开</div><div class="line">            var errorMsg = rule.errorMsg;</div><div class="line"></div><div class="line">            self.cache.push(function()&#123;                 //把校验的步骤用空函数包装起来，并放入cache</div><div class="line">                var strategy = strategyAry.shift();     //取出用户挑选的strategy</div><div class="line">                strategyAry.unshift(dom.value);         //把input的value 添加进参数列表</div><div class="line">                strategyAry.push(errorMsg);             //把errorMsg     添加进参数列表</div><div class="line">                return strategies[strategy].apply(dom,strategyAry);</div><div class="line">            &#125;);</div><div class="line">        &#125;)(rule)</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Validator.prototype.start=function()&#123;                   </div><div class="line">    for(var i=0, validatorFunc;validatorFunc=this.cache[i++];)&#123;</div><div class="line">        var errorMsg = validatorFunc();                  //开始校验，并取得校验后的返回信息</div><div class="line">        if (errorMsg) &#123;                                  //如果有确切的返回值，说明没有验证通过</div><div class="line">            return errorMsg;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="客户调用代码"><a href="#客户调用代码" class="headerlink" title="客户调用代码"></a>客户调用代码</h4><p>先创建一个validator对象，然后通过validator.add方法，往validator对象添加一些校验规则。validator.add方法接受3个参数。<br>registerForm.password 为参与验证的输入框。minLength:6 是一个以冒号隔开的字符串。冒号前的minlength代表客户挑选的strategy对象，冒号后面的6表示校验需要的必要参数。第三个参数就是返回的错误信息。<br>往vlidator对象添加完一系列的校验规则之后，会调用validator。start返回一个确切的errormsg字符串当作返回值，说明这次校验没有通过。<br>然后呢，让registerform.onsubmit方法返回false来阻止表单的提交。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">var registerForm = document.getElementById(&apos;registerForm&apos;);</div><div class="line"></div><div class="line">var validataFunc = function()&#123;</div><div class="line">    var validator = new Validator();                   </div><div class="line"></div><div class="line">    validator.add(registerForm.userName,[&#123;     //添加校验规则</div><div class="line">        strategy:&apos;isNonEmpty&apos;,</div><div class="line">        errorMsg:&apos;用户名不能为空&apos;</div><div class="line">    &#125;,&#123;</div><div class="line">        strategy:&apos;minLength:6&apos;,</div><div class="line">        errorMsg:&apos;用户名长度不能小于6位&apos;</div><div class="line">    &#125;]);</div><div class="line"></div><div class="line">    validator.add(registerForm.password,[&#123;</div><div class="line">        strategy:&apos;minLength:6&apos;,</div><div class="line">        errorMsg:&apos;密码长度不得能少于6位&apos;</div><div class="line">    &#125;]);</div><div class="line"></div><div class="line">    validator.add(registerForm.phoneNumber,[&#123;</div><div class="line">        strategy:&apos;isMobile&apos;,</div><div class="line">        errorMsg:&apos;手机号码格式不正确&apos;</div><div class="line">    &#125;]);</div><div class="line"></div><div class="line">    var errorMsg = validator.start();           //获得校验结果</div><div class="line">    return errorMsg;                            //返回校验结果</div><div class="line">&#125;</div><div class="line"></div><div class="line">registerForm.onsubmit = function()&#123;             //如果errormsg有确切返回值，说明验证没有通过</div><div class="line">    var errorMsg = validataFunc();</div><div class="line"></div><div class="line">    if (errorMsg) &#123;</div><div class="line">        alert(errorMsg);</div><div class="line">        return false;</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>使用策略模式重构代码之后，我们仅仅通过配置的方法就可以完成一个表单的校验，<br>这些校验规则也可以服用在程序的任何地方，还能作为插件的形式，方便地被移植到其它项目中。<br>在修改校验规则的时候，只需要编写或改动少量的代码。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>策略模式是一种可常用且有效的设计模式，从案例中我们可以总结出策略模式的一些优点：</p>
+<ul>
+<li>策略模式利用组合，委托和多态，有效地避免了多重条件语句。</li>
+<li>策略模式提供了对开放－封闭原则的支持，将算法封装在独立的strategy中，使得它们易与切换，易于理解，易于扩展。</li>
+<li>策略模式中的算法也可以复用在系统的其它地方，从而避免许多复制粘贴</li>
+<li>策略模式中利用组合和委托来让context拥有算法的能力，这也是继承的的一种更轻便的替代方案。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/策略模式/" rel="tag"># 策略模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/05/jsdesign3/" rel="next" title="Javascript 设计模式（ 三 ）建造者模式">
+                <i class="fa fa-chevron-left"></i> Javascript 设计模式（ 三 ）建造者模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/05/jsdesign5/" rel="prev" title="Javascript 设计模式（ 四 ）适配器模式">
+                Javascript 设计模式（ 四 ）适配器模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="JaxChu" />
+            
+              <p class="site-author-name" itemprop="name">JaxChu</p>
+              <p class="site-description motion-element" itemprop="description">FE@JKXY</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式"><span class="nav-number">1.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义："><span class="nav-number">1.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子："><span class="nav-number">1.2.</span> <span class="nav-text">例子：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#封装策略类"><span class="nav-number">1.2.1.</span> <span class="nav-text">封装策略类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#封装验证类"><span class="nav-number">1.2.2.</span> <span class="nav-text">封装验证类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户调用代码"><span class="nav-number">1.2.3.</span> <span class="nav-text">客户调用代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.2.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JaxChu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

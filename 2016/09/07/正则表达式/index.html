@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="正则," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="正则表达式定义正则表达式是一种描述字符串数据模式的方法，是检查、处理字符串的强力工具。">
+<meta name="keywords" content="正则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="https://zhuayu.github.io/zhuayu.github.io/2016/09/07/正则表达式/index.html">
+<meta property="og:site_name" content="JaxChu">
+<meta property="og:description" content="正则表达式定义正则表达式是一种描述字符串数据模式的方法，是检查、处理字符串的强力工具。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-15T07:35:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式">
+<meta name="twitter:description" content="正则表达式定义正则表达式是一种描述字符串数据模式的方法，是检查、处理字符串的强力工具。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhuayu.github.io/zhuayu.github.io/2016/09/07/正则表达式/"/>
+
+
+
+
+
+  <title>正则表达式 | JaxChu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JaxChu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quick note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'U5nsiDF5pEyJZwgfAFT5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhuayu.github.io/zhuayu.github.io/2016/09/07/正则表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JaxChu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JaxChu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">正则表达式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-07T22:10:38+08:00">
+                2016-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>正则表达式是一种描述字符串数据模式的方法，是检查、处理字符串的强力工具。<br><a id="more"></a></p>
+<h3 id="创建正则表达式"><a href="#创建正则表达式" class="headerlink" title="创建正则表达式"></a>创建正则表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var re1 = new RegExp(“abc”);</div><div class="line">var re2 = /abc/;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用构造函数创建时，反斜杠的使用规则与往常相同。</li>
+<li>使用双斜杠字面值创建时，不确定字符是否具有特殊含义，而不是字母、数字、空格式，只要在字符前加上反斜杠即可。</li>
+</ul>
+<h3 id="匹配测试"><a href="#匹配测试" class="headerlink" title="匹配测试"></a>匹配测试</h3><h4 id="test方法"><a href="#test方法" class="headerlink" title="test方法"></a>test方法</h4><p>接受用户传递的字符串，并返回一个布尔值，表示字符串中是否包含能与表达式模式匹配的字符串。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var re2 = /abc/;</div><div class="line">console.log(re2.test(&apos;abcde&apos;));</div><div class="line">// &gt; true</div><div class="line">console.log(re2.test(&apos;abxde&apos;));</div><div class="line">// &gt; false</div></pre></td></tr></table></figure></p>
+<h4 id="exec方法"><a href="#exec方法" class="headerlink" title="exec方法"></a>exec方法</h4><p>如果无法匹配模式则返回null,否则返回一个表示匹配字符串信息的对象。<br>exec方法返回的对象中包含index属性，表示字符串成功匹配的起始位置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var re2 = /abc/;</div><div class="line">console.log(re2.exec(&apos;abcde&apos;));</div><div class="line">// &gt; [&quot;abc&quot;, index: 0, input: &quot;abcde&quot;]</div><div class="line">console.log(re2.exec(&apos;abxde&apos;));</div><div class="line">// &gt; null</div></pre></td></tr></table></figure></p>
+<p>若正则表达式中包含圆括号的子表达式分组，与这些分组匹配的文本也会出现在数组中。<br>第一个元素是与整个模式匹配的字符串，<br>其后是与第一个分组匹配的部分字符串，然后是第二个分组如此类推。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var dataTimeRE = /(\d&#123;1,2&#125;)-(\d&#123;1,2&#125;)-(\d&#123;4&#125;)/;</div><div class="line">var str = &apos;24-8-2016&apos;;</div><div class="line">var match = dataTimeRE.exec(str);</div><div class="line">console.log(match);</div><div class="line">// &gt; [&quot;24-8-2016&quot;, &quot;24&quot;, &quot;8&quot;, &quot;2016&quot;, index: 0, input: &quot;24-8-2016”]</div></pre></td></tr></table></figure></p>
+<h3 id="字符组快捷写法"><a href="#字符组快捷写法" class="headerlink" title="字符组快捷写法"></a>字符组快捷写法</h3><ul>
+<li>\d    －－数字符号</li>
+<li>\w    －－字母和数字符号</li>
+<li>\s    －－空白符号（空格，制表符，换行符等）</li>
+<li>\D    －－非数字符号</li>
+<li>\W    －－非字母和数字符号</li>
+<li>\S    －－非空白符号</li>
+<li>.      －－除了换行符以外的任意符号</li>
+</ul>
+<h3 id="部分模式重复"><a href="#部分模式重复" class="headerlink" title="部分模式重复"></a>部分模式重复</h3><ul>
+<li>＋    －－该元素至少重复一次</li>
+<li>＊    －－该元素至少重复一次，同时可以匹配模式不存在的情况</li>
+<li>？    －－可选，模式出现0次或1次</li>
+<li>{ }    －－指明模式出现的次数。{4},4次。{2,4},2~4次。{,4},0~4次。{4.},至少4次以上。</li>
+</ul>
+<h3 id="边界"><a href="#边界" class="headerlink" title="边界"></a>边界</h3><ul>
+<li>^     －－字符始位置</li>
+<li>$     －－字符结束位置</li>
+<li>\b    －－单词边界（ \w 集合）</li>
+</ul>
+<p>/^\d+$/：匹配一个或者多个数字组成的字符串。<br>/^!/      ：匹配任何以感叹号开头的字符串。<br>/x^/     ：不匹配任何字符串。</p>
+<h3 id="子表达式分组"><a href="#子表达式分组" class="headerlink" title="子表达式分组"></a>子表达式分组</h3><p>如果一次性相想对多个元素使用＊或者＋，那么就需要使用分组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var strRE = /boo+(hoo+)+/i;</div><div class="line">var str = &apos;Booooohooooohoohoooo&apos;;</div><div class="line">var test = strRE.test(str);</div><div class="line">console.log(test);</div><div class="line">// &gt; true</div></pre></td></tr></table></figure></p>
+<h3 id="选项模式"><a href="#选项模式" class="headerlink" title="选项模式"></a>选项模式</h3><p>管道符号（｜），表示从其左侧的模式和右侧的模式任意选择一个进行匹配。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var animalCount = /\b\d+ (pig|cow|chicken)s?\b/;</div><div class="line">console.log(animalCount.test(&quot;15 cows&quot;));</div><div class="line">// &gt; true</div></pre></td></tr></table></figure></p>
+<h3 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h3><h4 id="检查手机号码"><a href="#检查手机号码" class="headerlink" title="检查手机号码"></a>检查手机号码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function isMobile(tel)&#123;</div><div class="line">     return /^((\(\d&#123;2,3&#125;\))|(\d&#123;3&#125;\-))?(1[34578]\d&#123;9&#125;)$/.test(tel);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="获取URL的Query参数"><a href="#获取URL的Query参数" class="headerlink" title="获取URL的Query参数"></a>获取URL的Query参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function getQuery(name) &#123;</div><div class="line">    var result = location.search.match(new RegExp(&quot;[\?\&amp;]&quot; + name+ &quot;=([^\&amp;]+)&quot;,&quot;i&quot;));</div><div class="line">    if(result == null || result.length &lt; 1)&#123;</div><div class="line">        return &quot;&quot;;</div><div class="line">    &#125;</div><div class="line">    return result[1];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="拆分host后缀"><a href="#拆分host后缀" class="headerlink" title="拆分host后缀"></a>拆分host后缀</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function domainarr(url)&#123;</div><div class="line">     var durl = /http:\/\/([^\/]+)\//i;</div><div class="line">     var hosts = url.match(durl);</div><div class="line">     var d_arr;</div><div class="line">     hosts = hosts[1];</div><div class="line">     d_arr = hosts.split(&apos;.&apos;);</div><div class="line">     return d_arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/正则/" rel="tag"># 正则</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/05/jsdesign6/" rel="next" title="Javascript 设计模式（ 六 ）单例模式">
+                <i class="fa fa-chevron-left"></i> Javascript 设计模式（ 六 ）单例模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/08/模块化/" rel="prev" title="模块化">
+                模块化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="JaxChu" />
+            
+              <p class="site-author-name" itemprop="name">JaxChu</p>
+              <p class="site-description motion-element" itemprop="description">FE@JKXY</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建正则表达式"><span class="nav-number">1.2.</span> <span class="nav-text">创建正则表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配测试"><span class="nav-number">1.3.</span> <span class="nav-text">匹配测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#test方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">test方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">exec方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符组快捷写法"><span class="nav-number">1.4.</span> <span class="nav-text">字符组快捷写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分模式重复"><span class="nav-number">1.5.</span> <span class="nav-text">部分模式重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边界"><span class="nav-number">1.6.</span> <span class="nav-text">边界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子表达式分组"><span class="nav-number">1.7.</span> <span class="nav-text">子表达式分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项模式"><span class="nav-number">1.8.</span> <span class="nav-text">选项模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用例"><span class="nav-number">1.9.</span> <span class="nav-text">用例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#检查手机号码"><span class="nav-number">1.9.1.</span> <span class="nav-text">检查手机号码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取URL的Query参数"><span class="nav-number">1.9.2.</span> <span class="nav-text">获取URL的Query参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拆分host后缀"><span class="nav-number">1.9.3.</span> <span class="nav-text">拆分host后缀</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JaxChu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

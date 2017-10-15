@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介fackbook   这是一个视图层的JS库。 虚拟DOM、组件化、可复用，多平台 React 在全局定义一个唯一的数据模型，模型中只要数据有任何变化，都将整个数据模型应用到UI界面的DOM树上，react会负责更新需要更新的的界面部分。 虚拟DOM，是在浏览器端用 JS 实现了一套 DOM API。基于 React 的所有 DOM 构造都是通过虚拟 DOM 进行的。每当数据变化时，React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react (一)概览">
+<meta property="og:url" content="https://zhuayu.github.io/zhuayu.github.io/2016/09/02/react1/index.html">
+<meta property="og:site_name" content="JaxChu">
+<meta property="og:description" content="简介fackbook   这是一个视图层的JS库。 虚拟DOM、组件化、可复用，多平台 React 在全局定义一个唯一的数据模型，模型中只要数据有任何变化，都将整个数据模型应用到UI界面的DOM树上，react会负责更新需要更新的的界面部分。 虚拟DOM，是在浏览器端用 JS 实现了一套 DOM API。基于 React 的所有 DOM 构造都是通过虚拟 DOM 进行的。每当数据变化时，React">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-15T07:35:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react (一)概览">
+<meta name="twitter:description" content="简介fackbook   这是一个视图层的JS库。 虚拟DOM、组件化、可复用，多平台 React 在全局定义一个唯一的数据模型，模型中只要数据有任何变化，都将整个数据模型应用到UI界面的DOM树上，react会负责更新需要更新的的界面部分。 虚拟DOM，是在浏览器端用 JS 实现了一套 DOM API。基于 React 的所有 DOM 构造都是通过虚拟 DOM 进行的。每当数据变化时，React">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhuayu.github.io/zhuayu.github.io/2016/09/02/react1/"/>
+
+
+
+
+
+  <title>react (一)概览 | JaxChu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JaxChu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quick note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'U5nsiDF5pEyJZwgfAFT5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhuayu.github.io/zhuayu.github.io/2016/09/02/react1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JaxChu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JaxChu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react (一)概览</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-02T22:53:12+08:00">
+                2016-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>fackbook   这是一个视图层的JS库。</p>
+<p>虚拟DOM、组件化、可复用，多平台</p>
+<p>React 在全局定义一个唯一的数据模型，模型中只要数据有任何变化，都将整个数据模型应用到UI界面的DOM树上，react会负责更新需要更新的的界面部分。</p>
+<p>虚拟DOM，是在浏览器端用 JS 实现了一套 DOM API。<br>基于 React 的所有 DOM 构造都是通过虚拟 DOM 进行的。每当数据变化时，React 会重 新构建整个 DOM 树，并将当前的树和上一次的 DOM 树进行对比，得到 DOM 结构的区别。然后仅仅将需要变化的部分进行实际的浏览器 DOM 更新。且，React 能够批处理虚拟 DOM 的刷新，在一个事件循环内的两次数据变化会被合并。</p>
+<p>组件，状态机器。<br>React 讲用户界面看成多个组件的状态机器，当组件处于某个状态是，就输出这个状态所对应的界面。只需要简单更新某个组件的状态，即可基于新状态输出整个页面，然后React 对比前后2个界面的不同，局部更新需要变化的DOM树。</p>
+<p>多平台，react Native。<br>可以打包成 android 及iOS 应用。<br><a id="more"></a></p>
+<h3 id="通俗地说："><a href="#通俗地说：" class="headerlink" title="通俗地说："></a>通俗地说：</h3><p>使用JS模版的虚拟DOM，通过状态来进行数据的局部更新。<br>组件有自己独立的功能和样式，一次写完，重复调用，大量现成的UI组件库，前端可以更加专注于布局和逻辑。</p>
+<h3 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h3><p>要在webapp、android、iOS多个平台发布。<br>某个功能，要在多个地方或多个页面复用。<br>数据复杂且不断变化的页面的大型应用。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>建议在React 中使用 CommonJS 模块系统，通过 npm下载依赖包，使用 webpack 打包。</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;react&quot;,</div><div class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</div><div class="line">  &quot;description&quot;: &quot;react test&quot;,</div><div class="line">  &quot;main&quot;: &quot;webpack.config.js&quot;,</div><div class="line">  &quot;scripts&quot;: &#123;</div><div class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;keywords&quot;: [</div><div class="line">    &quot;react&quot;</div><div class="line">  ],</div><div class="line">  &quot;author&quot;: &quot;jax&quot;,</div><div class="line">  &quot;license&quot;: &quot;ISC&quot;,</div><div class="line">  &quot;dependencies&quot;: &#123;</div><div class="line">    &quot;react&quot;: &quot;^15.3.0&quot;,</div><div class="line">    &quot;react-dom&quot;: &quot;^15.3.0&quot;,</div><div class="line">  &#125;,</div><div class="line">  &quot;devDependencies&quot;: &#123;</div><div class="line">    &quot;babel-core&quot;: &quot;^6.13.2&quot;,</div><div class="line">    &quot;babel-loader&quot;: &quot;^6.2.4&quot;,</div><div class="line">    &quot;babel-preset-es2015&quot;: &quot;^6.13.2&quot;,</div><div class="line">    &quot;babel-preset-react&quot;: &quot;^6.11.1&quot;,</div><div class="line">    &quot;babel-preset-stage-0&quot;: &quot;^6.5.0&quot;,</div><div class="line"></div><div class="line">    &quot;css-loader&quot;: &quot;^0.23.1&quot;,</div><div class="line">    &quot;file-loader&quot;: &quot;^0.9.0&quot;,</div><div class="line">    &quot;style-loader&quot;: &quot;^0.13.1&quot;,</div><div class="line">    &quot;url-loader&quot;: &quot;^0.5.7&quot;,</div><div class="line"></div><div class="line">    &quot;webpack&quot;: &quot;^1.13.1&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>react</li>
+<li><p>react-dom</p>
+<p>   2015.10.7日react v0.14版本中，为了使React能在更多的不同环境下更快、更容易构建。于是把react分成了react和react-dom两个部分。这样就为web版的react和移动端的React Native共享组件铺平了道路。也就是说我们可以跨平台使用相同的react组件。<br>   新的 react 包含了React.createElement，.createClass，.Component，.PropTypes，.children以及其他元素和组件类。<br>而 react-dom 包括ReactDOM.render，.unmountComponentAtNode和.findDOMNode。在 react-dom/server，有ReactDOMServer.renderToString和.renderToStaticMarkup服务器端渲染支持。<br>   总的来说，两者的区别就是：ReactDom是React的一部分。ReactDOM是React和DOM之间的粘合剂，一般用来定义单一的组件，或者结合ReactDOM.findDOMNode（）来使用。更重要的是ReactDOM包已经允许开发者删除React包添加的非必要的代码，并将其移动到一个更合适的存储库。</p>
+</li>
+<li><p>babel-core                    ——调用babel的API转码</p>
+</li>
+<li>babel-loader                 ——调用babel和webpack来翻译语法</li>
+<li>babel-preset-es2015    ——ES6转码规则</li>
+<li>babel-preset-react        ——react转码规则</li>
+<li><p>babel-preset-stage-0    ——ES6+不同阶段语法提案的转码规则（ 0～4 四个阶段 ）</p>
+<p>   安装babel的loader让其支持ES6等更高语法，ES6+的React语法有些超出了ES6规范，比如ES7 property initializers 和 static 关键字。</p>
+</li>
+<li><p>css-loader                     ——处理CSS文件中的 url( ) 表达式</p>
+</li>
+<li>style-loader                   ——将CSS代码插入页面的 style 标签中</li>
+<li>file-loader                      ——引入文件资源，如图像、字体、样式</li>
+<li><p>url-loader                      ——对file-loader的封装，常用语抽取url中的图片资源转base64</p>
+</li>
+<li><p>webpack                       ——打包构建工具</p>
+</li>
+</ul>
+<h3 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line">var webpack = require(&quot;webpack&quot;);</div><div class="line">var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  entry: path.resolve(__dirname, &apos;app/app.js&apos;),</div><div class="line">  output: &#123;</div><div class="line">    path: path.resolve(__dirname, &apos;build&apos;),</div><div class="line">    filename: &apos;bundle.js&apos;</div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">      new webpack.BannerPlugin(&quot;极客前端\n jax.zhu&quot;),</div><div class="line">      new uglifyJsPlugin(&#123;</div><div class="line">          compress: &#123;</div><div class="line">              warnings: false</div><div class="line">          &#125;</div><div class="line">      &#125;)</div><div class="line">  ],</div><div class="line">  module:&#123;</div><div class="line">    loaders:[&#123;</div><div class="line">        test: /\.jsx?$/,</div><div class="line">        exclude: /node_modules/,</div><div class="line">        loader: &quot;babel&quot;,</div><div class="line">        query:&#123;</div><div class="line">            presets:[&apos;es2015&apos;,&apos;react&apos;]</div><div class="line">        &#125;</div><div class="line">    &#125;,&#123;</div><div class="line">      test:/\.(png|jpg|gif)$/,</div><div class="line">      loader:&apos;url-loader?limit=8192&apos;</div><div class="line">    &#125;,&#123;</div><div class="line">      test: /\.css$/,</div><div class="line">      loader: &apos;style!css&apos;</div><div class="line">    &#125;]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>entry                         ——入口文件</li>
+<li>output                       ——出口文件</li>
+<li>plugins                      ——插件</li>
+<li>loaders                      ——模块和资源转换器</li>
+</ul>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><ul>
+<li>Mounted        实例化    ReactCompoments 被 JS render解析生成DOM节点，并被插入浏览器的DOM结构<ul>
+<li>getDefaultProps</li>
+<li>getInitalState</li>
+<li>componentWillMount</li>
+<li>render</li>
+<li>componentDidMount</li>
+</ul>
+</li>
+<li>Update          存在期    一个Mounted的ReactCompoments被重新render的过程<ul>
+<li>componentWillReceiveProps</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate</li>
+<li>render</li>
+<li>componentDidUpdate</li>
+</ul>
+</li>
+<li>Unmounted   清理期    一个Mounted的ReactCompoments对应的DOM节点，被从DOM结构中移除<ul>
+<li>componentWillUnmount</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h2><p>在React中，数据的葱父节点到子节点单向流动。子节点通过获取props渲染父节点传来的数据，如果顶部组件某个props发生改变，React会递归向下遍历整颗树，重新渲染整个组件。<br>组件内部也有自己的状态，state，这个状态只能在组件内修改。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">var React = require(&apos;react&apos;);</div><div class="line">var ReactDOM = require(&apos;react-dom&apos;);</div><div class="line"></div><div class="line">var Timer = React.createClass(&#123;</div><div class="line">    propTypes:&#123;</div><div class="line">      propsData:React.PropTypes.string</div><div class="line">    &#125;,</div><div class="line">    getDefaultProps:function()&#123;</div><div class="line">      return &#123;</div><div class="line">        propsData:&apos;morenName&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    getInitialState: function() &#123;</div><div class="line">      return &#123;</div><div class="line">        stateData: 0</div><div class="line">      &#125;;</div><div class="line">    &#125;,</div><div class="line">    tick: function() &#123;</div><div class="line">      this.setState(&#123;</div><div class="line">        stateData: this.state.stateData + 1</div><div class="line">      &#125;);</div><div class="line">    &#125;,</div><div class="line">    componentDidMount: function() &#123;</div><div class="line">      this.interval = setInterval(this.tick, 1000);</div><div class="line">    &#125;,</div><div class="line">    componentWillUnmount: function() &#123;</div><div class="line">      clearInterval(this.interval);</div><div class="line">    &#125;,</div><div class="line">    render: function() &#123;</div><div class="line">      return (</div><div class="line">        &lt;div&gt;&#123;this.props.propsData&#125;: &#123;this.state.stateData&#125;&lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">ReactDOM.render(&lt;Timer propsData=&quot;jax&quot; /&gt;, document.getElementById(&apos;app&apos;));</div></pre></td></tr></table></figure></p>
+<ul>
+<li>propTypes     定义配置对象，用于验证获取的props是否匹配。</li>
+<li>getDefaultProps    定义默认props值</li>
+<li>getInitialState    定义默认state值</li>
+<li>避免在组件内部修改this.props，把props作为只读，用来做事件处理，与子组件通讯。</li>
+<li>使用state存储简单的视图状态，比如下拉框是否可见。</li>
+<li>实用this.setState来设置状态，而不要使用this.state直接修改状态</li>
+</ul>
+<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p>React 通过事件处理器绑定到组件上处理事件。在事件被触发的同时，更新组件的内部状态。组件内部状态的更新会触发组件重绘。<br>React 处理事件的本质上和原生JavaScript事件一样，所以的事件在命名上与原生JavaScript规范一致，并且会在相同的情景触发。<br>React 绑定事件处理器的语法和HTML语法非常相似，但底层并没有使用HTML的属性，只是用这种写法来绑定事件处理器，其内部则按照需要高效滴维护着事件处理器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">var React = require(&apos;react&apos;);</div><div class="line">var ReactDOM = require(&apos;react-dom&apos;);</div><div class="line"></div><div class="line">var TodoList = React.createClass(&#123;</div><div class="line">  render: function() &#123;</div><div class="line">    var createItem = function(item) &#123;</div><div class="line">      return &lt;li key=&#123;item.id&#125;&gt;&#123;item.text&#125;&lt;/li&gt;;</div><div class="line">    &#125;;</div><div class="line">    return &lt;ul&gt;&#123;this.props.items.map(createItem)&#125;&lt;/ul&gt;;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line">var TodoApp = React.createClass(&#123;</div><div class="line">  getInitialState: function() &#123;</div><div class="line">    return &#123;items: [], text: &apos;&apos;&#125;;</div><div class="line">  &#125;,</div><div class="line">  onChange: function(e) &#123;</div><div class="line">    this.setState(&#123;text: e.target.value&#125;);</div><div class="line">  &#125;,</div><div class="line">  handleSubmit: function(e) &#123;</div><div class="line">    e.preventDefault();</div><div class="line">    var nextItems = this.state.items.concat([&#123;text: this.state.text, id: Date.now()&#125;]);</div><div class="line">    var nextText = &apos;&apos;;</div><div class="line">    this.setState(&#123;items: nextItems, text: nextText&#125;);</div><div class="line">  &#125;,</div><div class="line">  handleClick:function()&#123;</div><div class="line">    console.log(&apos;点击了一下&apos;)</div><div class="line">  &#125;,</div><div class="line">  render: function() &#123;</div><div class="line">    return (</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;h3 onClick=&#123;this.handleClick&#125;&gt;TODO&lt;/h3&gt;</div><div class="line">        &lt;TodoList items=&#123;this.state.items&#125; /&gt;</div><div class="line">        &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">          &lt;input onChange=&#123;this.onChange&#125; value=&#123;this.state.text&#125; /&gt;</div><div class="line">          &lt;button&gt;&#123;&apos;Add #&apos; + (this.state.items.length + 1)&#125;&lt;/button&gt;</div><div class="line">        &lt;/form&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">ReactDOM.render(&lt;TodoApp /&gt;, document.getElementById(&apos;app&apos;));</div></pre></td></tr></table></figure></p>
+<p>参考：<br>React Doc：<a href="https://facebook.github.io/react/docs/getting-started.html" target="_blank" rel="external">https://facebook.github.io/react/docs/getting-started.html</a><br>React package ：<a href="https://facebook.github.io/react/blog/2015/10/07/react-v0.14.html" target="_blank" rel="external">https://facebook.github.io/react/blog/2015/10/07/react-v0.14.html</a><br>React ES6+ ：<a href="https://babeljs.io/blog/2015/06/07/react-on-es6-plus" target="_blank" rel="external">https://babeljs.io/blog/2015/06/07/react-on-es6-plus</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/04/flex/" rel="prev" title="Flex">
+                Flex <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="JaxChu" />
+            
+              <p class="site-author-name" itemprop="name">JaxChu</p>
+              <p class="site-description motion-element" itemprop="description">FE@JKXY</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通俗地说："><span class="nav-number">1.1.</span> <span class="nav-text">通俗地说：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景："><span class="nav-number">1.2.</span> <span class="nav-text">使用场景：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">2.1.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-config-js"><span class="nav-number">2.2.</span> <span class="nav-text">webpack.config.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期"><span class="nav-number">3.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据流"><span class="nav-number">4.</span> <span class="nav-text">数据流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件绑定"><span class="nav-number">5.</span> <span class="nav-text">事件绑定</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JaxChu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

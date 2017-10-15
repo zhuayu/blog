@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Flex," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Flex一、简介1.是什么？Flexible Box , 弹性盒子 ，用于弹性布局 2.兼容性IE10 + ／Chrome 21+ ／Opera 12.1+ ／Firefox 22+ ／Safari 6.1+参考：caniuse.com 3.影响设置 flex 布局以后，子元素的 float 、clear 、vertical-align 属性将失效。">
+<meta name="keywords" content="Flex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flex">
+<meta property="og:url" content="https://zhuayu.github.io/zhuayu.github.io/2016/09/04/flex/index.html">
+<meta property="og:site_name" content="JaxChu">
+<meta property="og:description" content="Flex一、简介1.是什么？Flexible Box , 弹性盒子 ，用于弹性布局 2.兼容性IE10 + ／Chrome 21+ ／Opera 12.1+ ／Firefox 22+ ／Safari 6.1+参考：caniuse.com 3.影响设置 flex 布局以后，子元素的 float 、clear 、vertical-align 属性将失效。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-15T07:35:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flex">
+<meta name="twitter:description" content="Flex一、简介1.是什么？Flexible Box , 弹性盒子 ，用于弹性布局 2.兼容性IE10 + ／Chrome 21+ ／Opera 12.1+ ／Firefox 22+ ／Safari 6.1+参考：caniuse.com 3.影响设置 flex 布局以后，子元素的 float 、clear 、vertical-align 属性将失效。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhuayu.github.io/zhuayu.github.io/2016/09/04/flex/"/>
+
+
+
+
+
+  <title>Flex | JaxChu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JaxChu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quick note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'U5nsiDF5pEyJZwgfAFT5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhuayu.github.io/zhuayu.github.io/2016/09/04/flex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JaxChu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JaxChu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flex</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-04T18:54:01+08:00">
+                2016-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Flex"><a href="#Flex" class="headerlink" title="Flex"></a>Flex</h2><h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><h4 id="1-是什么？"><a href="#1-是什么？" class="headerlink" title="1.是什么？"></a>1.是什么？</h4><p>Flexible Box , 弹性盒子 ，用于弹性布局</p>
+<h4 id="2-兼容性"><a href="#2-兼容性" class="headerlink" title="2.兼容性"></a>2.兼容性</h4><p>IE10 + ／Chrome 21+ ／Opera 12.1+ ／Firefox 22+ ／Safari 6.1+<br>参考：<a href="http://caniuse.com/#search=flex" target="_blank" rel="external">caniuse.com</a></p>
+<h4 id="3-影响"><a href="#3-影响" class="headerlink" title="3.影响"></a>3.影响</h4><p>设置 flex 布局以后，子元素的 float 、clear 、vertical-align 属性将失效。<br><a id="more"></a></p>
+<h4 id="4-基本概念"><a href="#4-基本概念" class="headerlink" title="4.基本概念"></a>4.基本概念</h4><ul>
+<li>采用flex布局的元素，成为flex容器（flex container）。他的子元素自动变成容器成员，成为项目（flex item）。</li>
+<li>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。</li>
+<li>主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；</li>
+<li>交叉轴的开始位置叫做cross start，结束位置叫做cross end。</li>
+<li>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</li>
+</ul>
+<h3 id="二、使用Flex"><a href="#二、使用Flex" class="headerlink" title="二、使用Flex"></a>二、使用Flex</h3><h4 id="1-定义flex容器，任何容器都可以定义为flex布局，包括行内元素。需要添加内核前缀。"><a href="#1-定义flex容器，任何容器都可以定义为flex布局，包括行内元素。需要添加内核前缀。" class="headerlink" title="1.定义flex容器，任何容器都可以定义为flex布局，包括行内元素。需要添加内核前缀。"></a>1.定义flex容器，任何容器都可以定义为flex布局，包括行内元素。需要添加内核前缀。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.box-container&#123;</div><div class="line">    display: flex;</div><div class="line">    display: -ms-flex;          /* IE10 */</div><div class="line">    display: -webkit-flex;      /* Safari chrome opera */</div><div class="line">&#125;</div><div class="line"></div><div class="line">.box-inline-container&#123;</div><div class="line">    display: inline-flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2-设置容器属性"><a href="#2-设置容器属性" class="headerlink" title="2.设置容器属性"></a>2.设置容器属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">flex-direction: row | row-reverse | column | column-reverse;</div><div class="line">flex-wrap: nowrap | wrap | wrap-reverse;</div><div class="line">flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</div><div class="line">justify-content: flex-start | flex-end | center | space-between | space-around;</div><div class="line">align-items: flex-start | flex-end | center | baseline | stretch;</div><div class="line">align-content: flex-start | flex-end | center | space-between | space-around | stretch;</div></pre></td></tr></table></figure>
+<ul>
+<li>flex-direction    :  排列方向<ul>
+<li>row（默认值）：水平方向 ，起点在左端。</li>
+<li>row-reverse：水平方向，起点在右端。</li>
+<li>column：垂直方向，起点在上沿。</li>
+<li>column-reverse：垂直方向，起点在下沿。</li>
+</ul>
+</li>
+<li>flex-wrap    :    如何换行<ul>
+<li>nowrap（默认值） ：不换行</li>
+<li>wrap ：换行，第一行在上方</li>
+<li>wrap-reverse：换行，第一行在下方</li>
+</ul>
+</li>
+<li>flex-flow ：flex-direction + flex-wrap 的简写<ul>
+<li>row nowrap（ 默认值）</li>
+</ul>
+</li>
+<li>justify-content  : 主轴对齐方式<ul>
+<li>flex-start（默认值）：左对齐</li>
+<li>flex-end：右对齐</li>
+<li>center：居中</li>
+<li>space-between：两端对齐，项目之间的间隔都相等。</li>
+<li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</li>
+</ul>
+</li>
+<li>align-items  ：叉轴对齐方式<ul>
+<li>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+<li>flex-start：交叉轴的起点对齐。</li>
+<li>flex-end：交叉轴的终点对齐。</li>
+<li>center：交叉轴的中点对齐。</li>
+<li>baseline: 项目的第一行文字的基线对齐。</li>
+</ul>
+</li>
+<li>align-content ：多轴线的对齐方式，一个轴线不起作用<ul>
+<li>stretch（默认值）：轴线占满整个交叉轴。</li>
+<li>flex-start：与交叉轴的起点对齐。</li>
+<li>flex-end：与交叉轴的终点对齐。</li>
+<li>center：与交叉轴的中点对齐。</li>
+<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-设置项目属性"><a href="#3-设置项目属性" class="headerlink" title="3.设置项目属性"></a>3.设置项目属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">order: &lt;integer&gt;;</div><div class="line">flex-grow: &lt;number&gt;; /* default 0 */</div><div class="line">flex-shrink: &lt;number&gt;; /* default 1 */</div><div class="line">flex-basis: &lt;length&gt; | auto; /* default auto */</div><div class="line">flex: none | [ &lt;&apos;flex-grow&apos;&gt; &lt;&apos;flex-shrink&apos;&gt;? || &lt;&apos;flex-basis&apos;&gt; ]</div><div class="line">align-self: auto | flex-start | flex-end | center | baseline | stretch;</div></pre></td></tr></table></figure>
+<ul>
+<li>order  :  排列属性<ul>
+<li>0 （默认值）：越小排列越靠前，可以为负数。</li>
+</ul>
+</li>
+<li>flex-grow  :  放大比例<ul>
+<li>0（默认值）：如果存在剩余空间，也不放大。</li>
+<li>1 ：按 1 比例等分空间。</li>
+</ul>
+</li>
+<li>flex-shrink  :  缩小比例<ul>
+<li>1（默认值）：当空间不足时，都按比例缩小。</li>
+<li>0    ：  如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</li>
+</ul>
+</li>
+<li>flex-basis  :  分配多余空间前，占据主轴的空间<ul>
+<li>auto（默认值）：项目本来大小。</li>
+</ul>
+</li>
+<li>flex  ： flex-grow, flex-shrink 和 flex-basis的简写，后两个属性可选。<ul>
+<li>0 1 auto （默认值）</li>
+<li>auto ：1 1 auto</li>
+<li>none：0 0 auto</li>
+</ul>
+</li>
+<li>align-self  :  允许单个项目与其它项目不一样的对齐方式<ul>
+<li>auto（默认值）： 表示继承父元素的align-items属性</li>
+</ul>
+</li>
+</ul>
+<h3 id="三、注意事项"><a href="#三、注意事项" class="headerlink" title="三、注意事项"></a>三、注意事项</h3><ul>
+<li>flexbox有多个版本，在低版本安卓下实行的是09年的旧版标准Flexible Box Layout Module，这个标准需要添加-webkit-前缀。其余的实行的是新的flexbox标准CSS Flexible Box Layout Module Level 1，其中ios9以下Safari需要添加-webkit-前缀。</li>
+<li>旧版flexbox标准各浏览器支持属性有限，比如说不支持flex-wrap等。所以如果考虑兼容性的话需要只使用旧版标准中浏览器可以支持的属性。</li>
+<li>还是旧版的问题，旧版的使用比例伸缩布局时会导致盒子内容大小不等会导致无法‘等分’等布局。这个时候需要设置width:0%;等把原始大小设置成0。</li>
+<li>依旧是旧版的问题，旧版的box item要求属性是块级结构，所以很多inline元素需要设置display：block等才能显示正常。</li>
+<li>新发现 text-overflow: ellipsis;在display：flex元素上无效</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flex/" rel="tag"># Flex</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/02/react1/" rel="next" title="react (一)概览">
+                <i class="fa fa-chevron-left"></i> react (一)概览
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/04/jsdesign1/" rel="prev" title="Javascript 设计模式（ 一 ）模块方法模式">
+                Javascript 设计模式（ 一 ）模块方法模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="JaxChu" />
+            
+              <p class="site-author-name" itemprop="name">JaxChu</p>
+              <p class="site-description motion-element" itemprop="description">FE@JKXY</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flex"><span class="nav-number">1.</span> <span class="nav-text">Flex</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、简介"><span class="nav-number">1.1.</span> <span class="nav-text">一、简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-是什么？"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-兼容性"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.兼容性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-影响"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-基本概念"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.基本概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、使用Flex"><span class="nav-number">1.2.</span> <span class="nav-text">二、使用Flex</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-定义flex容器，任何容器都可以定义为flex布局，包括行内元素。需要添加内核前缀。"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.定义flex容器，任何容器都可以定义为flex布局，包括行内元素。需要添加内核前缀。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-设置容器属性"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.设置容器属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-设置项目属性"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.设置项目属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、注意事项"><span class="nav-number">1.3.</span> <span class="nav-text">三、注意事项</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JaxChu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
